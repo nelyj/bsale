@@ -4,6 +4,7 @@ require "pry"
 require "bsale/config"
 require "bsale/version"
 require "bsale/base"
+require "bsale/client"
 require "bsale/document"
 require "bsale/errors"
 

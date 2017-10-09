@@ -53,12 +53,6 @@ RSpec.describe Bsale do
       expect(response["href"].include?("references")).to eq true
     end
 
-    it "references by document ID" do
-      document = @document.all["items"].first
-      response = @document.references({ id: document["id"] })
-      expect(response["href"].include?("references")).to eq true
-    end
-
     it "taxes by document ID" do
       document = @document.all["items"].first
       response = @document.taxes({ id: document["id"] })
@@ -75,6 +69,15 @@ RSpec.describe Bsale do
       document = @document.all["items"].first
       response = @document.count
       expect(response.class).to eq Hash
+    end
+
+    it "post a new document" do
+      #referencias y fechas
+      #cliente del documento
+      #Detalles del documento
+      #Pagos asociados al documento
+      binding.pry
+      #document = @document.create(attrs)
     end
   end
 end
