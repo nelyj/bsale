@@ -16,5 +16,11 @@ module Bsale
       response = @connection.get "documents/summary#{Bsale.config.extension}"
       JSON.parse(response.body)
     end
+
+    def detail(opts = {})
+      raise "You must need to pass an ID" if opts[:id].nil?
+      response = @connection.get "documents/#{opts[:id]}#{Bsale.config.extension}"
+      JSON.parse(response.body)
+    end
   end
 end

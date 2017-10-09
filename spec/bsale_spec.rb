@@ -30,5 +30,15 @@ RSpec.describe Bsale do
       response = @document.summary
       expect(response.class).to eq Array
     end
+
+    it "get an error when detail for document ID is not passed" do
+      expect{ @document.detail }.to raise_error("You must need to pass an ID")
+    end
+
+    it "get detail from document ID" do
+      document = @document.all["items"].first
+      response = @document.detail({ id: document["id"] })
+      expect(document).to eq response
+    end
   end
 end
