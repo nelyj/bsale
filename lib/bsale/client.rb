@@ -5,7 +5,7 @@ module Bsale
     end
 
     def attrs
-      default = { code: "1-9", city: "ciudad", company: "empresa", municipality: "comuna", activity: "giro", address: "direccion" }
+      { code: "", city: "", company: "", municipality: "", activity: "", address: "" }
     end
 
     def set_values(opts = {})

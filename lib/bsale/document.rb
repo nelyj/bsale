@@ -3,6 +3,7 @@ module Bsale
     attr_accessor :limit, :offset, :version
 
     def initialize(opts = {})
+      set_values(attrs.merge(opts))
       @connection = Faraday.new("#{BASE_URL}#{Bsale.config.version}/")
       @connection.headers = Bsale.config.headers
     end
@@ -50,6 +51,19 @@ module Bsale
     def count
       response = @connection.get "documents/count#{Bsale.config.extension}"
       JSON.parse(response.body)
+    end
+
+    def attrs
+      { documentTypeId: nil, officeId: nil, emissionDate: nil, expirationDate: nil,
+        declareSii: nil, priceListId: nil, client: {}, details: {}, payment: {},
+        references: {}, dynamicAttributes: {} }
+    end
+
+    def set_values(opts = {})
+      opts.each do |k,v|
+        singleton_class.send(:attr_accessor, k)
+        instance_variable_set("@#{k}", v)
+      end
     end
   end
 end
