@@ -1,4 +1,4 @@
-module ShipitAPI
+module Bsale
   class Config
     attr_accessor :access_token, :content_type, :version
 
