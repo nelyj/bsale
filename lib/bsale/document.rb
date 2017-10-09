@@ -29,5 +29,27 @@ module Bsale
       JSON.parse(response.body)
     end
 
+    def references(opts = {})
+      raise "You must need to pass an ID" if opts[:id].nil?
+      response = @connection.get "documents/#{opts[:id]}/references#{Bsale.config.extension}"
+      JSON.parse(response.body)
+    end
+
+    def taxes(opts = {})
+      raise "You must need to pass an ID" if opts[:id].nil?
+      response = @connection.get "documents/#{opts[:id]}/document_taxes#{Bsale.config.extension}"
+      JSON.parse(response.body)
+    end
+
+    def sellers(opts = {})
+      raise "You must need to pass an ID" if opts[:id].nil?
+      response = @connection.get "documents/#{opts[:id]}/sellers#{Bsale.config.extension}"
+      JSON.parse(response.body)
+    end
+
+    def count
+      response = @connection.get "documents/count#{Bsale.config.extension}"
+      JSON.parse(response.body)
+    end
   end
 end

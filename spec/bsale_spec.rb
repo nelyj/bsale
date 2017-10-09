@@ -46,5 +46,35 @@ RSpec.describe Bsale do
       response = @document.details({ id: document["id"] })
       expect(response["href"].include?("details")).to eq true
     end
+
+    it "references by document ID" do
+      document = @document.all["items"].first
+      response = @document.references({ id: document["id"] })
+      expect(response["href"].include?("references")).to eq true
+    end
+
+    it "references by document ID" do
+      document = @document.all["items"].first
+      response = @document.references({ id: document["id"] })
+      expect(response["href"].include?("references")).to eq true
+    end
+
+    it "taxes by document ID" do
+      document = @document.all["items"].first
+      response = @document.taxes({ id: document["id"] })
+      expect(response["href"].include?("taxes")).to eq true
+    end
+
+    it "sellers by document ID" do
+      document = @document.all["items"].first
+      response = @document.sellers({ id: document["id"] })
+      expect(response["href"].include?("sellers")).to eq true
+    end
+
+    it "count documents" do
+      document = @document.all["items"].first
+      response = @document.count
+      expect(response.class).to eq Hash
+    end
   end
 end
