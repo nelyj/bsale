@@ -20,9 +20,15 @@ RSpec.describe Bsale do
     before(:each) do
       @document = Bsale::Document.new
     end
-    it 'get all documents' do
+
+    it "get all documents" do
       response = @document.all
       expect(response["href"].include?("documents")).to eq true
+    end
+
+    it "get a summary" do
+      response = @document.summary
+      expect(response.class).to eq Array
     end
   end
 end

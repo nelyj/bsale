@@ -1,9 +1,9 @@
 module Bsale
   class Config
-    attr_accessor :access_token, :content_type, :version, :extesion, :headers
+    attr_accessor :access_token, :content_type, :version, :extension, :headers
 
     def initialize
-      @extesion = ".json".freeze
+      @extension = ".json".freeze
       @content_type ||= 'application/json'.freeze
       @version ||= '1'.freeze
     end

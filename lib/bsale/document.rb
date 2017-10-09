@@ -8,7 +8,12 @@ module Bsale
     end
 
     def all(opts = {})
-      response = @connection.get "documents#{Bsale.config.extesion}"
+      response = @connection.get "documents#{Bsale.config.extension}"
+      JSON.parse(response.body)
+    end
+
+    def summary(opts = {})
+      response = @connection.get "documents/summary#{Bsale.config.extension}"
       JSON.parse(response.body)
     end
   end
