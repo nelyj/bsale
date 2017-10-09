@@ -31,14 +31,20 @@ RSpec.describe Bsale do
       expect(response.class).to eq Array
     end
 
-    it "get an error when detail for document ID is not passed" do
-      expect{ @document.detail }.to raise_error("You must need to pass an ID")
+    it "get an error when document ID is not passed to find" do
+      expect{ @document.find }.to raise_error("You must need to pass an ID")
     end
 
-    it "get detail from document ID" do
+    it "find from document ID" do
       document = @document.all["items"].first
-      response = @document.detail({ id: document["id"] })
+      response = @document.find({ id: document["id"] })
       expect(document).to eq response
+    end
+
+    it "details by document ID" do
+      document = @document.all["items"].first
+      response = @document.details({ id: document["id"] })
+      expect(response["href"].include?("details")).to eq true
     end
   end
 end
