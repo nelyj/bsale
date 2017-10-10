@@ -1,4 +1,8 @@
 module Bsale
+  # number: Folio del documento de referencia (String).
+  # referenceDate: Fecha del documento de referencia (Integer).
+  # reason: Razón del documento (String).
+  # codeSii: Código tributario del documento de referencia (Integer).
   class Reference < Base
     def initialize(opts = {})
       set_values(attrs.merge(opts))

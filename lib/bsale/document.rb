@@ -1,4 +1,16 @@
 module Bsale
+  # documentTypeId:  Id del tipo de documento que indicara si es factura, boleta, nota de venta etc. (Integer).
+  # officeId:  Id de la sucursal donde se emite el documento, si no es especificada el documento quedara asignado a la sucursal por defecto del sistema (Integer).
+  # priceListId: Id de la lista de precio utilizada por el documento, si no es especificada se utilizara la lista de precio por defecto de la sucursal (Integer).
+  # emissionDate: Fecha de emisión del documento, se envía en formato GMT (Integer).
+  # expirationDate: Fecha vencimiento del documento, se envía en formato GMT (Integer).
+  # declareSii:  Si se desea declarar el documento al Servicio de impuestos internos se envía 1, en caso contrario un 0 (Boolean).
+  # codeSii(opcional): Opcionalmente puedes utilizar el parámetro codeSii en vez de documentTypeId si conoces el código tributario del documento.
+  # client: Bsale::Client object.to_hash
+  # details: Bsale::Detail object.to_hash
+  # payments: Bsale::Payment object.to_hash
+  # references: Bsale::Reference object.to_hash
+  # dynamicAttributes: Bsale::DinamicAttributes object.to_hash
   class Document < Base
     attr_accessor :limit, :offset, :version
 
@@ -54,15 +66,14 @@ module Bsale
     end
 
     def create(opts = {})
-      binding.pry
-      response = @connection.post "documents#{Bsale.config.extension}", opts
+      response = @connection.post "documents#{Bsale.config.extension}", opts.to_json
       JSON.parse(response.body)
     end
 
     def attrs
       { documentTypeId: nil, officeId: nil, emissionDate: nil, expirationDate: nil,
-        declareSii: nil, priceListId: nil, client: {}, details: {}, payment: {},
-        references: {}, dynamicAttributes: {} }
+        declareSii: nil, priceListId: nil, client: nil, details: nil, payment: nil,
+        references: nil, dynamicAttributes: nil }
     end
 
     def set_values(opts = {})

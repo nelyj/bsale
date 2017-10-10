@@ -2,9 +2,10 @@ module Bsale
   class Base
     BASE_URL = "https://api.bsale.cl/v".freeze
 
-    def to_h
+    def to_h(empty = true)
       hash = self.instance_variables.each_with_object({}) { |v, h| h[v.to_s.delete("@")] = self.instance_variable_get(v) }
       hash.delete("connection")
+      hash.delete_if {|k,v| v.nil? }
       hash
     end
 

@@ -1,4 +1,10 @@
 module Bsale
+  #code: Rut del cliente (String).
+  #city: Ciudad del cliente (String).
+  #company: Razón social del cliente (String).
+  #municipality: Comuna del cliente (String).
+  #activity: Giro del cliente (String).
+  #address: Dirección del cliente (String).
   class Client < Base
     def initialize(opts = {})
       set_values(attrs.merge(opts))

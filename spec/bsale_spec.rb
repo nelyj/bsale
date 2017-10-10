@@ -72,21 +72,28 @@ RSpec.describe Bsale do
     end
 
     it "post a new document" do
-      client = Bsale::Client.new({ code: nil, city: nil,
-                                   company: nil, municipality: nil,
-                                   activity: nil, address: nil })
-      details = Bsale::Detail.new({ netUnitValue: nil, quantity: nil,
-                                    taxId:nil, comment: nil, discount: nil })
       payments = Bsale::Payment.new({ paymentTypeId: nil, amount: nil, recordDate: nil })
-      reference = Bsale::Reference.new({ number: nil, referenceDate: nil, reason: nil,
-                                         codeSii: nil })
+      client = Bsale::Client.new({ code: "1-9", city: "Santiago",
+                                   company: "Freelance SpA", municipality: "Santiago Centro",
+                                   activity: "Asesoría informatica", address: "Moneda 975" })
 
-      document = Bsale::Document.new({ documentTypeId: nil, officeId: nil, priceListId: nil,
-                                       emissionDate: nil, expirationDate: nil, declareSii: nil,
-                                       client: client.to_h, details: details.to_h, payment: payments.to_h,
+      details = Bsale::Detail.new({ netUnitValue: 53975, quantity: 1,
+                                    taxId: "[1,2]", comment: "el nombre del producto que voy a vender", discount: 5 })
+      reference = Bsale::Reference.new({ number: 123, referenceDate: Time.now.to_i,
+                                         reason: "Factura electrónica 123", codeSii: 33 })
+
+
+      #priceListId: default, not specified for this case
+      #documentTypeId: 8 factura electronica
+      #officeId: default, not specified for this case
+      #payment: default option
+      #client: default option
+      document = Bsale::Document.new({ codeSii: 33, emissionDate: Time.now.to_i,
+                                       expirationDate: Time.now.to_i, declareSii: 0,
+                                       client: client.to_h, details: details.to_h,
                                        references: reference.to_h })
 
-      document.to_h
+      result = document.create(document.to_h)
       binding.pry
       #referencias y fechas
       #cliente del documento
