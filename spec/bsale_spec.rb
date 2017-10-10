@@ -86,7 +86,7 @@ RSpec.describe Bsale do
                                        client: client.to_h, details: details.to_h, payment: payments.to_h,
                                        references: reference.to_h })
 
-      asd = document.to_h
+      document.to_h
       binding.pry
       #referencias y fechas
       #cliente del documento

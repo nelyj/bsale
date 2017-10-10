@@ -53,6 +53,12 @@ module Bsale
       JSON.parse(response.body)
     end
 
+    def create(opts = {})
+      binding.pry
+      response = @connection.post "documents#{Bsale.config.extension}", opts
+      JSON.parse(response.body)
+    end
+
     def attrs
       { documentTypeId: nil, officeId: nil, emissionDate: nil, expirationDate: nil,
         declareSii: nil, priceListId: nil, client: {}, details: {}, payment: {},
