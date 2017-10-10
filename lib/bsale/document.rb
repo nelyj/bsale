@@ -24,13 +24,13 @@ module Bsale
       JSON.parse(response.body)
     end
 
-    def details(opts = {})
+    def by_details(opts = {})
       raise "You must need to pass an ID" if opts[:id].nil?
       response = @connection.get "documents/#{opts[:id]}/details#{Bsale.config.extension}"
       JSON.parse(response.body)
     end
 
-    def references(opts = {})
+    def by_references(opts = {})
       raise "You must need to pass an ID" if opts[:id].nil?
       response = @connection.get "documents/#{opts[:id]}/references#{Bsale.config.extension}"
       JSON.parse(response.body)

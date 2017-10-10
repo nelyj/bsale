@@ -43,13 +43,13 @@ RSpec.describe Bsale do
 
     it "details by document ID" do
       document = @document.all["items"].first
-      response = @document.details({ id: document["id"] })
+      response = @document.by_details({ id: document["id"] })
       expect(response["href"].include?("details")).to eq true
     end
 
     it "references by document ID" do
       document = @document.all["items"].first
-      response = @document.references({ id: document["id"] })
+      response = @document.by_references({ id: document["id"] })
       expect(response["href"].include?("references")).to eq true
     end
 
