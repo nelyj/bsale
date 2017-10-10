@@ -72,6 +72,16 @@ RSpec.describe Bsale do
     end
 
     it "post a new document" do
+      client = Bsale::Client.new({ code: nil, city: nil,
+                                   company: nil, municipality: nil,
+                                   activity: nil, address: nil })
+      details = Bsale::Detail.new({ netUnitValue: nil, quantity: nil,
+                                    taxId:nil, comment: nil, discount: nil })
+      payments = Bsale::Payment.new({ paymentTypeId: nil, amount: nil, recordDate: nil })
+      reference = Bsale::Reference.new({ number: nil, referenceDate: nil, reason: nil,
+                                         codeSii: nil })
+
+      binding.pry
       #referencias y fechas
       #cliente del documento
       #Detalles del documento

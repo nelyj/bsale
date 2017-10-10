@@ -2,6 +2,10 @@ module Bsale
   class Base
     BASE_URL = "https://api.bsale.cl/v".freeze
 
+    def to_h
+      self.instance_variables.each_with_object({}) { |v, h| h[v.to_s.delete("@")] = self.instance_variable_get(v) }
+    end
+
     def raise_if_invalid!(resp)
       raise ServerError, "Server Error" if resp.status > 499
       raise NotFoundError, "Not Found" if resp.status == 404
