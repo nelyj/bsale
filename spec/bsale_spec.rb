@@ -81,12 +81,17 @@ RSpec.describe Bsale do
       reference = Bsale::Reference.new({ number: nil, referenceDate: nil, reason: nil,
                                          codeSii: nil })
 
+      document = Bsale::Document.new({ documentTypeId: nil, officeId: nil, priceListId: nil,
+                                       emissionDate: nil, expirationDate: nil, declareSii: nil,
+                                       client: client.to_h, details: details.to_h, payment: payments.to_h,
+                                       references: reference.to_h })
+
+      asd = document.to_h
       binding.pry
       #referencias y fechas
       #cliente del documento
       #Detalles del documento
       #Pagos asociados al documento
-      binding.pry
       #document = @document.create(attrs)
     end
   end

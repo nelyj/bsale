@@ -1,14 +1,11 @@
 module Bsale
   class Detail < Base
-    attr_accessor :warehouse
-
     def initialize(opts = {}, warehouse = false)
-      @warehose = warehouse
-      set_values(attrs.merge(opts))
+      set_values(attrs(warehouse).merge(opts))
     end
 
-    def attrs
-      if @warehouse
+    def attrs(option)
+      if option
         { variantId: 0, netUnitValue: 0, quantity: 0, taxId: "", comment: "", discount: 0 }
       else
         { netUnitValue: 0, quantity: 1, taxId: "", comment: "", discount: 0 }

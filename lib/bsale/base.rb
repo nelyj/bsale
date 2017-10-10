@@ -3,7 +3,9 @@ module Bsale
     BASE_URL = "https://api.bsale.cl/v".freeze
 
     def to_h
-      self.instance_variables.each_with_object({}) { |v, h| h[v.to_s.delete("@")] = self.instance_variable_get(v) }
+      hash = self.instance_variables.each_with_object({}) { |v, h| h[v.to_s.delete("@")] = self.instance_variable_get(v) }
+      hash.delete("connection")
+      hash
     end
 
     def raise_if_invalid!(resp)
