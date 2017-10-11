@@ -89,16 +89,17 @@ RSpec.describe Bsale do
     end
 
     it "post a new document" do
+      tax = Bsale::Tax.new
       payments = Bsale::Payment.new({ paymentTypeId: nil, amount: nil, recordDate: nil })
       client = Bsale::Client.new({ code: "1-9", city: "Santiago",
                                    company: "Freelance SpA", municipality: "Santiago Centro",
                                    activity: "Asesoría informatica", address: "Moneda 975" })
+      taxes = tax.all["items"].map {|item| item["id"] }
 
       details = Bsale::Detail.new({ netUnitValue: 53975, quantity: 1,
-                                    taxId: "[1,2]", comment: "el nombre del producto que voy a vender", discount: 5 })
+                                    taxId: "#{taxes}", comment: "el nombre del producto que voy a vender", discount: 5 })
       reference = Bsale::Reference.new({ number: 123, referenceDate: Time.now.to_i,
                                          reason: "Factura electrónica 123", codeSii: 33 })
-
 
       #priceListId: default, not specified for this case
       #documentTypeId: 8 factura electronica
@@ -111,12 +112,10 @@ RSpec.describe Bsale do
       document.details << details.to_h
       document.references << reference.to_h
 
-      result = document.create(document.to_h)
-      #referencias y fechas
-      #cliente del documento
-      #Detalles del documento
-      #Pagos asociados al documento
-      #document = @document.create(attrs)
+      request = document.create(document.to_h)
+      response = document.find({ id: request["id"] })
+
+      expect(request).to eq response
     end
   end
 end

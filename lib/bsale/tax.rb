@@ -1,7 +1,6 @@
 module Bsale
   class Tax < Base
     attr_accessor :limit, :offset, :version
-
     def initialize(opts = {})
       set_values(attrs.merge(opts))
       @connection = Faraday.new("#{BASE_URL}#{Bsale.config.version}/")

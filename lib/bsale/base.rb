@@ -6,7 +6,6 @@ module Bsale
       hash = self.instance_variables.each_with_object({}) { |v, h| h[v.to_s.delete("@")] = self.instance_variable_get(v) }
       hash.delete("connection")
       hash.delete_if {|k,v| v.nil? }
-      hash
     end
 
     def raise_if_invalid!(resp)
