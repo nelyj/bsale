@@ -16,6 +16,23 @@ RSpec.describe Bsale do
     expect(Bsale::VERSION).not_to be "0.1.0"
   end
 
+  context "When is a tax" do
+    before(:each) do
+      @tax = Bsale::Tax.new
+    end
+
+    it "get all taxes availables" do
+      response = @tax.all
+      expect(response["href"]).include?("taxes").to eq true
+    end
+
+    it "get a specific tax" do
+      tax = @document.all["items"].first
+      response = @document.find({ id: tax["id"] })
+      expect(tax).to eq response
+    end
+  end
+
   context "When is a document" do
     before(:each) do
       @document = Bsale::Document.new

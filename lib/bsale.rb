@@ -9,6 +9,7 @@ require "bsale/document"
 require "bsale/detail"
 require "bsale/payment"
 require "bsale/reference"
+require "bsale/tax"
 require "bsale/errors"
 
 module Bsale
