@@ -114,7 +114,6 @@ RSpec.describe Bsale do
 
       request = document.create(document.to_h)
       response = document.find({ id: request["id"] })
-
       expect(request).to eq response
     end
   end
