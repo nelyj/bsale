@@ -10,12 +10,13 @@ module Bsale
 
     def find(opts = {})
       raise "You must need to pass an ID" if opts[:id].nil?
-      response = @connection.get "documents/#{opts[:id]}/details#{Bsale.config.extension}"
+      response = @connection.get "taxes/#{opts[:id]}#{Bsale.config.extension}"
       JSON.parse(response.body)
     end
 
     def all(opts = {})
       response = @connection.get "taxes#{Bsale.config.extension}"
+      JSON.parse(response.body)
     end
 
     def attrs

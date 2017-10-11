@@ -23,12 +23,12 @@ RSpec.describe Bsale do
 
     it "get all taxes availables" do
       response = @tax.all
-      expect(response["href"]).include?("taxes").to eq true
+      expect(response["href"].include?("taxes")).to eq true
     end
 
     it "get a specific tax" do
-      tax = @document.all["items"].first
-      response = @document.find({ id: tax["id"] })
+      tax = @tax.all["items"].first
+      response = @tax.find({ id: tax["id"] })
       expect(tax).to eq response
     end
   end
