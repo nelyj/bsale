@@ -28,7 +28,7 @@ Bsale.configure do |config|
 end
 ```
 
-## Example to create document
+## Example: Create a document
 
 ```ruby
 # create document
