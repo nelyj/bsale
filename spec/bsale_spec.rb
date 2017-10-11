@@ -86,15 +86,15 @@ RSpec.describe Bsale do
       #priceListId: default, not specified for this case
       #documentTypeId: 8 factura electronica
       #officeId: default, not specified for this case
-      #payment: default option
+      #payments: default option
       #client: default option
       document = Bsale::Document.new({ codeSii: 33, emissionDate: Time.now.to_i,
                                        expirationDate: Time.now.to_i, declareSii: 0,
-                                       client: client.to_h, details: details.to_h,
-                                       references: reference.to_h })
+                                         client: client.to_h})
+      document.details << details.to_h
+      document.references << reference.to_h
 
       result = document.create(document.to_h)
-      binding.pry
       #referencias y fechas
       #cliente del documento
       #Detalles del documento

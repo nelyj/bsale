@@ -72,8 +72,8 @@ module Bsale
 
     def attrs
       { documentTypeId: nil, officeId: nil, emissionDate: nil, expirationDate: nil,
-        declareSii: nil, priceListId: nil, client: nil, details: nil, payment: nil,
-        references: nil, dynamicAttributes: nil }
+        declareSii: nil, priceListId: nil, client: nil, details: [], payments: [],
+        references: [], dynamicAttributes: nil }
     end
 
     def set_values(opts = {})
