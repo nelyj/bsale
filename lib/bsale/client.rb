@@ -11,7 +11,7 @@ module Bsale
     end
 
     def attrs
-      { code: "", city: "", company: "", municipality: "", activity: "", address: "" }
+      { code: "", city: "", company: "", municipality: "", activity: "", address: "", email: "", firstName: "", note: "", lastName: "", city: "" }
     end
 
     def set_values(opts = {})
