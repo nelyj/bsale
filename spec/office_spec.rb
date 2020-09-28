@@ -33,15 +33,70 @@ RSpec.describe Bsale::Office do
       expect(office.state).to eq nil
       expect(office.imagestionCellarId).to eq nil
     end
+
+    it 'returns an instance class with attributes' do
+      office = Bsale::Office.new(
+        longitude: '',
+        zipCode: '000_000',
+        name: 'Imaginex',
+        latitude: '',
+        isVirtual: 0,
+        address: 'Santa Rosa 402',
+        country: 'Chile',
+        municipality: 'Puerto Varas',
+        city: 'Puerto Varas',
+        costCenter: '25',
+        description: 'Oficina'
+      )
+
+      expect(office.latitude).to eq ''
+      expect(office.zipCode).to eq '000_000'
+      expect(office.name).to eq 'Imaginex'
+      expect(office.latitude).to eq ''
+      expect(office.isVirtual).to eq 0
+      expect(office.address).to eq 'Santa Rosa 402'
+      expect(office.country).to eq 'Chile'
+      expect(office.municipality).to eq 'Puerto Varas'
+      expect(office.city).to eq 'Puerto Varas'
+      expect(office.costCenter).to eq '25'
+      expect(office.description).to eq 'Oficina'
+    end
   end
 
   context '#all' do
+    it 'returns a list of offices' do
+      office = Bsale::Office.new
+
+      expect(office.all).to be_a_kind_of(Array)
+    end
   end
 
   context '#find' do
+    it 'returns an instance class' do
+      office = Bsale::Office.new
+
+      expect(office.find(id: 1)).to be_a_kind_of(described_class)
+    end
   end
 
   context '#create' do
+    it 'creates a new instance class' do
+      office = Bsale::Office.new(
+        longitude: '',
+        zipCode: '000_000',
+        name: 'Imaginex',
+        latitude: '',
+        isVirtual: 0,
+        address: 'Santa Rosa 402',
+        country: 'Chile',
+        municipality: 'Puerto Varas',
+        city: 'Puerto Varas',
+        costCenter: '25',
+        description: 'Oficina'
+      )
+
+      expect(office.create).to be_a_kind_of(described_class)
+    end
   end
 
   context '#update' do

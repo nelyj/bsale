@@ -26,5 +26,13 @@ module Bsale
     def hash_attributes
       Hash[attributes.collect { |item| [item, nil] } ]
     end
+
+    def to_h
+      object = self
+      instance_variables.each_with_object({}) do |var, hash|
+        data = object.instance_variable_get(var)
+        hash[var.to_s.delete('@')] = data unless data.nil?
+      end
+    end
   end
 end

@@ -9,9 +9,16 @@ module Bsale
       conn
     end
 
-    def response(url, klass, params = nil, method: :get)
+    def response(url, klass, method: :get)
       binding.pry
-      res = request.send(method, "#{url}#{Bsale.config.extension}")
+
+      res =
+        if method == :get
+          request.send(method, "#{url}#{Bsale.config.extension}")
+        else
+          request.send(method, "#{url}#{Bsale.config.extension}", klass.to_h.to_json)
+        end
+
       data = JSON.parse(res.body)
 
       if data.has_key?('count') && data.keys.length > 1
