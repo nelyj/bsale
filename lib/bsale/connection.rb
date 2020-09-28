@@ -10,10 +10,11 @@ module Bsale
     end
 
     def response(url, klass, method: :get)
+      binding.pry
       res = request.send(method, "#{url}#{Bsale.config.extension}")
       data = JSON.parse(res.body)
 
-      if data.has_key?('count')
+      if data.has_key?('count') && data.keys.length > 1
         result = []
         data['items'].map do |item|
           result << klass.class.new(item)
@@ -23,6 +24,8 @@ module Bsale
       end
 
       result
+    rescue StandardError => e
+      raise StandardError.new "#{e.to_s}"
     end
   end
 

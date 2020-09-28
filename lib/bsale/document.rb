@@ -4,8 +4,20 @@ module Bsale
       Bsale.response('documents', self)
     end
 
+    def count_all
+      object = Bsale.response('documents/count', self)
+      object.count
+    end
+
+    def find(id:)
+      id = id.to_i
+      raise 'You must need to pass an ID' if id.zero?
+      Bsale.response("documents/#{id}", self)
+    end
+
     def attributes
       %i(
+        error
         documentTypeId
         officeId
         priceListId
@@ -62,6 +74,7 @@ module Bsale
         sellers
         attributes
         sale_condition
+        count
       )
     end
   end

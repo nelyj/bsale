@@ -11,6 +11,7 @@ require 'bsale/dte_code.rb'
 require 'bsale/error'
 require 'bsale/payment'
 require 'bsale/payment_type'
+require 'bsale/reference'
 require 'bsale/tax'
 require 'bsale/version'
 

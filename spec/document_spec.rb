@@ -14,17 +14,25 @@ RSpec.describe Bsale::Document do
     end
   end
 
+  context '#count_all' do
+    it 'returns total of documents' do
+      document = Bsale::Document.new
+
+      expect(document.count_all).to be_a_kind_of(Integer)
+    end
+  end
+
   context '#find' do
     it 'returns an instance class' do
       document = Bsale::Document.new
-      expect(document.find(1)).to eq document.id
+      expect(document.find(id: 1)).to eq 1
     end
   end
 
   context '#create' do
     it 'returns a new document object' do
       payment = Bsale::Payment.new
-      taxe = Bsale::Tax.new
+      tax = Bsale::Tax.new
       client = Bsale::Client.new
       reference = Bsale::Reference.new
       document = Bsale::Document.new(
