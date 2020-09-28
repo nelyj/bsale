@@ -9,7 +9,7 @@ module Bsale
       conn
     end
 
-    def response(url, klass, method: :get)
+    def response(url, klass, params = nil, method: :get)
       binding.pry
       res = request.send(method, "#{url}#{Bsale.config.extension}")
       data = JSON.parse(res.body)

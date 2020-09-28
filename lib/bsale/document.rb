@@ -9,6 +9,10 @@ module Bsale
       object.count
     end
 
+    def create
+      Bsale.response('documents', self, method: :post)
+    end
+
     def find(id:)
       id = id.to_i
       raise 'You must need to pass an ID' if id.zero?
@@ -75,6 +79,7 @@ module Bsale
         attributes
         sale_condition
         count
+        reference
       )
     end
   end

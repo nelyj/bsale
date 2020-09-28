@@ -36,8 +36,8 @@ RSpec.describe Bsale::Document do
       client = Bsale::Client.new
       reference = Bsale::Reference.new
       dte_code = Bsale::DteCode.new
-      document_type = Bsale::DocumentType
-      binding.pry
+      document_type = Bsale::DocumentType.new
+      detail = Bsale::Detail.new
 
       document = Bsale::Document.new(
         documentTypeId: 8,
@@ -52,7 +52,6 @@ RSpec.describe Bsale::Document do
         reference: reference,
       )
 
-      binding.pry
       expect(document.create).to eq be_a_kind_of(Bsale::Document)
     end
   end
