@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 RSpec.describe Bsale::Client do
+  before do
+    Bsale.configure do |config|
+      config.access_token = ENV['BSALE_KEY']
+    end
+  end
+
   context '#new' do
     subject { described_class.new }
 
