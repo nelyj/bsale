@@ -35,6 +35,10 @@ RSpec.describe Bsale::Document do
       tax = Bsale::Tax.new
       client = Bsale::Client.new
       reference = Bsale::Reference.new
+      dte_code = Bsale::DteCode.new
+      document_type = Bsale::DocumentType
+      binding.pry
+
       document = Bsale::Document.new(
         documentTypeId: 8,
         officeId: 1,
