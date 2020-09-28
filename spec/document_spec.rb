@@ -1,18 +1,28 @@
 require 'spec_helper'
 
 RSpec.describe Bsale::Document do
+  before do
+    Bsale.configure do |config|
+      config.access_token = ENV['BSALE_KEY']
+    end
+  end
+
   context '#all' do
     it 'returns a list of documents' do
       document = Bsale::Document.new
       expect(document.all).to be_a_kind_of(Array)
     end
+  end
 
-    it '#find' do
+  context '#find' do
+    it 'returns an instance class' do
       document = Bsale::Document.new
       expect(document.find(1)).to eq document.id
     end
+  end
 
-    it '#create' do
+  context '#create' do
+    it 'returns a new document object' do
       payment = Bsale::Payment.new
       taxe = Bsale::Tax.new
       client = Bsale::Client.new
