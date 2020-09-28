@@ -7,4 +7,5 @@ module Bsale
   class AccessForbiddenError < AuthorizationError; end
   class ClientError < TransportError; end
   class InvalidURLError < ClientError; end
+  class UndefinedAttributes < StandardError; end
 end

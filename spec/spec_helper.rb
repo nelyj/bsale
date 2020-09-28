@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "bsale"
 
+ENV['BSALE_KEY'] = '5ba1dae4470f8eda4998957a8210db81aae62f83'
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
