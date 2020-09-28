@@ -103,5 +103,10 @@ RSpec.describe Bsale::Office do
   end
 
   context '#update' do
+    it 'returns an updated object' do
+      office = described_class.new.all.first
+      office.description = 'Office Updated'
+      expect(office.update.description).to eq 'Office Updated'
+    end
   end
 end

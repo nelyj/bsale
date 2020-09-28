@@ -14,6 +14,10 @@ module Bsale
       Bsale.response('offices', self, method: :post)
     end
 
+    def update
+      Bsale.response("offices/#{self.id}", self, method: :put)
+    end
+
     def attributes
       %i(
         href
