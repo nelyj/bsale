@@ -95,7 +95,10 @@ RSpec.describe Bsale::Office do
         description: 'Oficina'
       )
 
-      expect(office.create).to be_a_kind_of(described_class)
+      response = office.create
+
+      expect(response).to be_a_kind_of(described_class)
+      expect(response.id).to be_a_kind_of(Integer)
     end
   end
 

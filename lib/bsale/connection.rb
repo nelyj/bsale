@@ -10,8 +10,6 @@ module Bsale
     end
 
     def response(url, klass, method: :get)
-      binding.pry
-
       res =
         if method == :get
           request.send(method, "#{url}#{Bsale.config.extension}")
