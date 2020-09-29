@@ -14,7 +14,9 @@ module Bsale
         if method == :get
           request.send(method, "#{url}#{Bsale.config.extension}")
         else
-          request.send(method, "#{url}#{Bsale.config.extension}", klass.to_h.to_json)
+          body = klass.to_h.to_json
+          binding.pry
+          request.send(method, "#{url}#{Bsale.config.extension}", body)
         end
 
       data = JSON.parse(res.body)

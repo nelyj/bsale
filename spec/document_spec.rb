@@ -33,23 +33,53 @@ RSpec.describe Bsale::Document do
     it 'returns a new document object' do
       payment = Bsale::Payment.new
       tax = Bsale::Tax.new
-      client = Bsale::Client.new
       reference = Bsale::Reference.new
       dte_code = Bsale::DteCode.new
       document_type = Bsale::DocumentType.new
-      detail = Bsale::Detail.new
+      office = Bsale::Office.new
+
+      # it should use codeSii instead of documentTypeId
+      document_type = document_type.all.find { |dt| dt.codeSii == '33' }
+      office = office.all.first
+      # default price list
+      emission_date = Time.now.to_i
+      expiration_date = emission_date + (86_400 * 2)
+      declare_sii = 1 #true
+
+      # para boleta no es necesario el cliente, para la factura el cliente es necesario
+      # si manejas el stock en bsale se envia el detalle del documento
+
+      tax = tax.all.find {|t| t.name == 'IVA' }
+      # solo llenaremos el detail para declarar en sii
+      detail = Bsale::Detail.new(
+        netUnitValue: 59_975,
+        quantity: 1,
+        taxId: "[#{tax.id}]",
+        comment: 'Pago de cuota',
+        discount: 0
+      )
+
+      client = Bsale::Client.new(
+        code: '1-9',
+        city: 'Puerto Varas',
+        company: 'Nombre Ejemplo',
+        municipality: 'Comuna',
+        activity: 'Giro',
+        address: 'Dirección',
+        email: 'fake@fake.com',
+        isForeigner: 0,
+        companyOrPerson: 1
+      )
 
       document = Bsale::Document.new(
-        documentTypeId: 8,
-        officeId: 1,
-        emissionDate: 1407715200,
-        expirationDate: 1407715200,
-        declareSii: 0,
-        priceListId: 18,
-        client: client,
+        priceListId: 1,
+        documentTypeId: document_type.id,
+        officeId: office.id,
+        emissionDate: emission_date,
+        expirationDate: expiration_date,
+        declareSii: declare_sii,
         details: [detail],
-        payments: [payment],
-        reference: reference,
+        client: client
       )
 
       expect(document.create).to eq be_a_kind_of(Bsale::Document)

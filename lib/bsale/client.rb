@@ -25,6 +25,7 @@ module Bsale
         twitter
         code
         companyOrPerson
+        isForeigner
       )
     end
   end

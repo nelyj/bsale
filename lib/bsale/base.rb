@@ -31,7 +31,18 @@ module Bsale
       object = self
       instance_variables.each_with_object({}) do |var, hash|
         data = object.instance_variable_get(var)
-        hash[var.to_s.delete('@')] = data unless data.nil?
+        next if data.nil?
+        hash[var.to_s.delete('@')] =
+          if data.class.to_s.include?('Bsale')
+            data.to_h
+          elsif data.kind_of?(Array)
+            new_array = []
+            new_array = data.map do |o|
+              o.to_h
+            end
+          else
+            data
+          end
       end
     end
   end
