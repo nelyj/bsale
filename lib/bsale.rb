@@ -1,17 +1,22 @@
-require "json"
-require "faraday"
-require "pry"
-require "bsale/config"
-require "bsale/version"
-require "bsale/base"
-require "bsale/client"
-require "bsale/document"
-require "bsale/detail"
-require "bsale/payment"
-require "bsale/payment_type"
-require "bsale/reference"
-require "bsale/tax"
-require "bsale/errors"
+require 'json'
+require 'faraday'
+require 'pry'
+require 'bsale/base'
+require 'bsale/config'
+require 'bsale/connection'
+require 'bsale/client'
+require 'bsale/detail'
+require 'bsale/document.rb'
+require 'bsale/document_type'
+require 'bsale/dte_code.rb'
+require 'bsale/error'
+require 'bsale/office'
+require 'bsale/payment'
+require 'bsale/payment_type'
+require 'bsale/price_list'
+require 'bsale/reference'
+require 'bsale/tax'
+require 'bsale/version'
 
 module Bsale
 end

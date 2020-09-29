@@ -6,19 +6,27 @@ module Bsale
   #activity: Giro del cliente (String).
   #address: Dirección del cliente (String).
   class Client < Base
-    def initialize(opts = {})
-      set_values(attrs.merge(opts))
-    end
-
-    def attrs
-      { code: "", city: "", company: "", municipality: "", activity: "", address: "", email: "", firstName: "", note: "", lastName: "", city: "" }
-    end
-
-    def set_values(opts = {})
-      opts.each do |k,v|
-        singleton_class.send(:attr_accessor, k)
-        instance_variable_set("@#{k}", v)
-      end
+    def attributes
+      %i(
+        facebook
+        municipality
+        phone
+        activity
+        city
+        maxCredit
+        hasCredit
+        accumulatePoints
+        lastName
+        note
+        firstName
+        company
+        address
+        email
+        twitter
+        code
+        companyOrPerson
+        isForeigner
+      )
     end
   end
 end
