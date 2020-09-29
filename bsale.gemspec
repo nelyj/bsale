@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "pry-byebug"
-  spec.add_dependency "faraday", '~> 0.9'
+  spec.add_dependency "faraday"
   spec.add_dependency "uri_template", '~> 0.7'
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", ">= 12.3.3"
