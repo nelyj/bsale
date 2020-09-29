@@ -31,12 +31,10 @@ RSpec.describe Bsale::Document do
 
   context '#create' do
     it 'returns a new document object' do
-      payment = Bsale::Payment.new
       tax = Bsale::Tax.new
-      reference = Bsale::Reference.new
-      dte_code = Bsale::DteCode.new
       document_type = Bsale::DocumentType.new
       office = Bsale::Office.new
+      price_list = Bsale::PriceList.new
 
       # it should use codeSii instead of documentTypeId
       document_type = document_type.all.find { |dt| dt.codeSii == '33' }
@@ -48,7 +46,6 @@ RSpec.describe Bsale::Document do
 
       # para boleta no es necesario el cliente, para la factura el cliente es necesario
       # si manejas el stock en bsale se envia el detalle del documento
-
       tax = tax.all.find {|t| t.name == 'IVA' }
       # solo llenaremos el detail para declarar en sii
       detail = Bsale::Detail.new(
@@ -71,8 +68,10 @@ RSpec.describe Bsale::Document do
         companyOrPerson: 1
       )
 
+      price_list = price_list.all.first
+
       document = Bsale::Document.new(
-        priceListId: 1,
+        priceListId: price_list.id,
         documentTypeId: document_type.id,
         officeId: office.id,
         emissionDate: emission_date,
@@ -82,7 +81,7 @@ RSpec.describe Bsale::Document do
         client: client
       )
 
-      expect(document.create).to eq be_a_kind_of(Bsale::Document)
+      expect(document.create).to be_a_kind_of(Bsale::Document)
     end
   end
 end

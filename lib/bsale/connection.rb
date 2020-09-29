@@ -15,7 +15,6 @@ module Bsale
           request.send(method, "#{url}#{Bsale.config.extension}")
         else
           body = klass.to_h.to_json
-          binding.pry
           request.send(method, "#{url}#{Bsale.config.extension}", body)
         end
 
