@@ -9,10 +9,10 @@ module Bsale
       conn
     end
 
-    def response(url, klass, method: :get)
+    def response(url, klass, method: :get, options:'')
       res =
         if method == :get
-          request.send(method, "#{url}#{Bsale.config.extension}")
+          request.send(method, "#{url}#{Bsale.config.extension}#{options}")
         else
           body = klass.to_h.to_json
           request.send(method, "#{url}#{Bsale.config.extension}", body)
@@ -35,7 +35,7 @@ module Bsale
     end
   end
 
-  def self.response(url, klass, method: :get)
-    @response = Connection.new.response(url, klass, method: method)
+  def self.response(url, klass, method: :get, options: '')
+    @response = Connection.new.response(url, klass, method: method, options: options)
   end
 end

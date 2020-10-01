@@ -33,10 +33,10 @@ RSpec.describe Bsale::Client do
     end
   end
 
-  context '#find' do
+  context '#where' do
     it 'returns a client instance' do
       client = Bsale::Client.new
-      expect(client.find(16)).to eq client.id
+      expect(client.where(code: '1-9')).to be_a_kind_of(Array)
     end
   end
 
