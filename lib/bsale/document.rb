@@ -4,6 +4,12 @@ module Bsale
       Bsale.response('documents', self)
     end
 
+    def where(limit: 100, offset: 0, client_code: nil)
+      raise ClientCodeIsNUll, 'you must to pass client_code' if client_code.to_s.empty?
+
+      Bsale.response('documents', self, options: "?limit=#{limit}&offset=#{offset}&clientcode=#{client_code}")
+    end
+
     def count_all
       object = Bsale.response('documents/count', self)
       object.count
