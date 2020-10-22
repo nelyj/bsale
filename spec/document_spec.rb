@@ -17,7 +17,7 @@ RSpec.describe Bsale::Document do
   context '#where' do
     it 'returns a list of documents filter by clientcode' do
       document = Bsale::Document.new
-      expect(document.where(client_code: '1-9')).to be_a_kind_of(Array)
+      expect(document.where(limit: 10)).to be_a_kind_of(Array)
     end
   end
 
