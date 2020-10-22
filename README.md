@@ -1,6 +1,6 @@
 # Bsale
 
-Unofficial Ruby client for the [BSale API](https://github.com/gmontero/API-Bsale/wiki)
+Unofficial Ruby client for the [BSale API](https://apichile.bsalelab.com/lista-de-endpoints/documentos)
 
 ## Installation
 
@@ -28,76 +28,6 @@ Bsale.configure do |config|
 end
 ```
 
-## Create a new invoice
-```ruby
-# create document
-
-tax = Bsale::Tax.new
-payments = Bsale::Payment.new({ paymentTypeId: nil, amount: nil, recordDate: nil })
-client = Bsale::Client.new({ code: "1-9", city: "Santiago",
-                             company: "Freelance SpA", municipality: "Santiago Centro",
-                             activity: "Asesoría informatica", address: "Moneda 975" })
-taxes = tax.all["items"].map {|item| item["id"] }
-
-details = Bsale::Detail.new({ netUnitValue: 53975, quantity: 1,
-                              taxId: "#{taxes}", comment: "el nombre del producto que voy a vender", discount: 5 })
-reference = Bsale::Reference.new({ number: 123, referenceDate: Time.now.to_i,
-                                   reason: "Factura electrónica 123", codeSii: 33 })
-
-document = Bsale::Document.new({ codeSii: 33, emissionDate: Time.now.to_i,
-                                 expirationDate: Time.now.to_i, declareSii: 0,
-                                   client: client.to_h})
-document.details << details.to_h
-document.references << reference.to_h
-
-request = document.create(document.to_h)
-
-#request return with a Hash like this:
-
-{"href"=>"https://api.bsale.cl/v1/documents/2014.json",
- "id"=>2014,
- "emissionDate"=>1507680000,
- "expirationDate"=>1507680000,
- "generationDate"=>1507748801,
- "number"=>67,
- "totalAmount"=>61018.0,
- "netAmount"=>51276.0,
- "taxAmount"=>9742.0,
- "exemptAmount"=>0.0,
- "exportTotalAmount"=>0.0,
- "exportNetAmount"=>0.0,
- "exportTaxAmount"=>0.0,
- "exportExemptAmount"=>0.0,
- "commissionRate"=>0.0,
- "commissionNetAmount"=>0.0,
- "commissionTaxAmount"=>0.0,
- "commissionTotalAmount"=>0.0,
- "percentageTaxWithheld"=>0.0,
- "purchaseTaxAmount"=>0.0,
- "purchaseTotalAmount"=>0.0,
- "address"=>"Moneda 975",
- "municipality"=>"Santiago Centro",
- "city"=>"Santiago",
- "urlTimbre"=>nil,
- "ted"=>nil,
- "urlPublicView"=>"http://app2.bsale.cl/view/9970/f3b890392f70?sfd=99",
- "urlPdf"=>"http://app2.bsale.cl/view/9970/f3b890392f70.pdf?sfd=99",
- "urlPublicViewOriginal"=>"http://app2.bsale.cl/view/9970/f3b890392f70",
- "urlPdfOriginal"=>"http://app2.bsale.cl/view/9970/f3b890392f70.pdf",
- "token"=>"f3b890392f70",
- "state"=>0,
- "urlXml"=>nil,
- "informedSii"=>2,
- "responseMsgSii"=>nil,
- "document_type"=>{"href"=>"https://api.bsale.cl/v1/document_types/5.json", "id"=>"5"},
- "client"=>{"href"=>"https://api.bsale.cl/v1/clients/110.json", "id"=>"110"},
- "office"=>{"href"=>"https://api.bsale.cl/v1/offices/1.json", "id"=>"1"},
- "user"=>{"href"=>"https://api.bsale.cl/v1/users/3.json", "id"=>"3"},
- "coin"=>{"href"=>"https://api.bsale.cl/v1/coins/1.json", "id"=>"1"},
- "references"=>{"href"=>"https://api.bsale.cl/v1/documents/2014/references.json"},
- "document_taxes"=>{"href"=>"https://api.bsale.cl/v1/documents/2014/document_taxes.json"},
- "details"=>{"href"=>"https://api.bsale.cl/v1/documents/2014/details.json"},
- "sellers"=>{"href"=>"https://api.bsale.cl/v1/documents/2014/sellers.json"}}
 
 ```
 
