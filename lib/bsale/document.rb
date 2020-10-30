@@ -5,7 +5,6 @@ module Bsale
     end
 
     def where(*args)
-      require 'pry'
       allowed = %i[
         limit
         offset
