@@ -27,7 +27,8 @@ RSpec.describe Bsale::Detail do
 
   context '#find' do
     detail = described_class.new
-
-    expect(detail.find(document_id: 9)).to be_a_kind_of(described_class)
+    it 'returns a object' do
+      expect(detail.find(document_id: 9)).to be_a_kind_of(described_class)
+    end
   end
 end

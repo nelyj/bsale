@@ -112,6 +112,7 @@ module Bsale
         sale_condition
         count
         reference
+        serialNumber
       )
     end
   end

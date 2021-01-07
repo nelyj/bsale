@@ -36,7 +36,7 @@ RSpec.describe Bsale::PriceList do
     it 'returns ID with the first object in list' do
       price_list = described_class.new
 
-      expect(price_list.all.first.id).to eq '120'
+      expect(price_list.all.first.id).to eq '129'
     end
   end
 end

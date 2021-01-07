@@ -22,6 +22,7 @@ module Bsale
         taxId
         comment
         discount
+        error
       )
     end
   end
