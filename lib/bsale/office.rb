@@ -24,6 +24,7 @@ module Bsale
         id
         name
         description
+        email
         address
         latitude
         longitude

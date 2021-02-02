@@ -35,6 +35,7 @@ module Bsale
         ipadPrintHigh
         restrictClientType
         book_type
+        error
       )
     end
   end
