@@ -113,6 +113,7 @@ module Bsale
         count
         reference
         serialNumber
+        rcofDate
       )
     end
   end
